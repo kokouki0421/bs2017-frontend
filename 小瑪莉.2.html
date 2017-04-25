@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>小瑪莉</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="./stylesheets/bootstrap.min.css" rel="stylesheet">
+    <style>
+            body {
+            background-color:lightyellow;
+            
+        }
+        /*
+        .top {
+            z-index: 1;
+            opacity: .5;
+        }*/
+
+        .row-with-gap {
+            margin-bottom: 10px;
+        }
+
+
+        .peach {
+            z-index: 1;
+            position: relative;
+        }
+
+
+        .akaoni {
+            z-index: 2;
+            position: absolute;
+            opacity: 0;
+            transition: all .3s;
+        }
+
+        .active .akaoni {
+            display: block;
+            opacity: 1;
+            transition: all 0s;
+            /*可以從透明度0~1循序漸進變化*/
+        }
+
+        .active .peach {
+
+            transform: scale(1.5);
+        }
+
+        .main {
+            width: 1000px;
+            z-index: 0;
+        }
+
+        .main .row-with-gap img {
+            width: 50px;
+        }
+
+         @keyframes TestMove {
+            from {
+                right: 20%;
+            }
+            to {
+                right: 80%;
+            }
+        }
+        @-webkit-keyframes TestMove {
+            from {
+                right: 20%;
+            }
+            to {
+                right: 80%;
+            }
+        }
+         @-moz-keyframes TestMove {
+            from {
+                right: 20%;
+            }
+            to {
+                right: 80%;
+            }
+        }
+        .main .tast .momo{
+            /*background: url(http://img01.gahag.net/201601/04o/gahag-0042623222.png)no-repeat;
+            background-size: 500px;
+            background-position: 80px center;*/
+            
+            animation:TestMove 5s; 
+            -webkit-animation:TestMove 5s; 
+            -moz-animation:TestMove 5s; 
+        }
+
+    </style>
+</head>
+
+<body>
+
+
+    <!--<div class="container-fluid top">
+        <div class="container">
+            <div class="row">
+                <a href="#"><img src="./images/M (2).png" class="img" alt="Image" width=100;></a>
+            </div>
+        </div>
+    </div>-->
+
+    <div class="container main">
+        <br>
+        <div class="tast">
+        <div class="row row-with-gap">
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                <img id="z1" src="./images/setsubun_akaoni_mame1.png" class="img-responsive akaoni" alt="Image">
+                <img id="i1" src="./images/illustrain03-setubun05.png" class="img-responsive peach" alt="Image">
+            </div>
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                <img id="z1" src="./images/setsubun_akaoni_mame1.png" class="img-responsive akaoni" alt="Image">
+                <img id="i2" src="./images/fruit_peach.png" class="img-responsive peach" alt="Image">
+            </div>
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                <img id="z1" src="./images/setsubun_akaoni_mame1.png" class="img-responsive akaoni" alt="Image">
+                <img id="i3" src="./images/bread_cheese_pan.png" class="img-responsive peach" alt="Image">
+            </div>
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                <img id="z1" src="./images/setsubun_akaoni_mame1.png" class="img-responsive akaoni" alt="Image">
+                <img id="i4" src="./images/fruit_peach.png" class="img-responsive peach" alt="Image">
+            </div>
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                <img id="z1" src="./images/setsubun_akaoni_mame1.png" class="img-responsive akaoni" alt="Image">
+                <img id="i5" src="./images/fruit_peach.png" class="img-responsive peach" alt="Image">
+            </div>
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                <img id="z1" src="./images/setsubun_akaoni_mame1.png" class="img-responsive akaoni" alt="Image">
+                <img id="i6" src="./images/onigiri_maru.png" class="img-responsive peach" alt="Image">
+            </div>
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                <img id="z1" src="./images/setsubun_akaoni_mame1.png" class="img-responsive akaoni" alt="Image">
+                <img id="i7" src="./images/fruit_peach.png" class="img-responsive peach" alt="Image">
+            </div>
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                <img id="z1" src="./images/setsubun_akaoni_mame1.png" class="img-responsive akaoni" alt="Image">
+                <img id="i8" src="./images/bread_cheese_pan.png" class="img-responsive peach" alt="Image">
+            </div>
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                <img id="z1" src="./images/setsubun_akaoni_mame1.png" class="img-responsive akaoni" alt="Image">
+                <img id="i9" src="./images/fruit_peach.png" class="img-responsive peach" alt="Image">
+            </div>
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                <img id="z1" src="./images/setsubun_akaoni_mame1.png" class="img-responsive akaoni" alt="Image">
+                <img id="i10" src="./images/onigiri_maru.png" class="img-responsive peach" alt="Image">
+            </div>
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                <img id="z1" src="./images/setsubun_akaoni_mame1.png" class="img-responsive akaoni" alt="Image">
+                <img id="i11" src="./images/fruit_peach.png" class="img-responsive peach" alt="Image">
+            </div>
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                <img id="z1" src="./images/setsubun_akaoni_mame.png" class="img-responsive akaoni" alt="Image">
+                <img id="i12" src="./images/illustrain03-setubun05.png" class="img-responsive peach" alt="Image">
+            </div>
+        </div>
+        <br>
+        <div class="row row-with-gap">
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                <img id="z1" src="./images/setsubun_akaoni_mame1.png" class="img-responsive akaoni" alt="Image">
+                <img id="i32" src="./images/fruit_peach.png" class="img-responsive peach" alt="Image">
+            </div>
+            <div class="col-xs-offset-10 col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                <img id="z1" src="./images/setsubun_akaoni_mame.png" class="img-responsive akaoni" alt="Image">
+                <img id="i13" src="./images/onigiri_maru.png" class="img-responsive peach" alt="Image">
+            </div>
+        </div>
+
+        <br>
+        <div class="row row-with-gap">
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                <img id="z1" src="./images/setsubun_akaoni_mame1.png" class="img-responsive akaoni" alt="Image">
+                <img id="i31" src="./images/onigiri_maru.png" class="img-responsive peach" alt="Image">
+            </div>
+            <div class="col-xs-offset-10 col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                <img id="z1" src="./images/setsubun_akaoni_mame.png" class="img-responsive akaoni" alt="Image">
+                <img id="i14" src="./images/fruit_peach.png" class="img-responsive peach" alt="Image">
+            </div>
+        </div>
+        <br>
+        <div class="row row-with-gap">
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                <img id="z1" src="./images/setsubun_akaoni_mame1.png" class="img-responsive akaoni" alt="Image">
+                <img id="i30" src="./images/fruit_peach.png" class="img-responsive peach" alt="Image">
+            </div>
+            
+            <img src="./images/gahag-0042623222-1.png" class="img-responsive momo" alt="Image">
+            
+            <div class="col-xs-offset-10 col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                <img id="z1" src="./images/setsubun_akaoni_mame.png" class="img-responsive akaoni" alt="Image">
+                <img id="i15" src="./images/onigiri_maru.png" class="img-responsive peach" alt="Image">
+            </div>
+        </div>
+        <br>
+        <div class="row row-with-gap">
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                <img id="z1" src="./images/setsubun_akaoni_mame1.png" class="img-responsive akaoni" alt="Image">
+                <img id="i29" src="./images/onigiri_maru.png" class="img-responsive peach" alt="Image">
+            </div>
+            <div class="col-xs-offset-10 col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                <img id="z1" src="./images/setsubun_akaoni_mame.png" class="img-responsive akaoni" alt="Image">
+                <img id="i16" src="./images/fruit_peach.png" class="img-responsive peach" alt="Image">
+            </div>
+        </div>
+        <br>
+        <div class="row row-with-gap">
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                <img id="z1" src="./images/setsubun_akaoni_mame.png" class="img-responsive akaoni" alt="Image">
+                <img id="i28" src="./images/illustrain03-setubun05.png" class="img-responsive peach" alt="Image">
+            </div>
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                <img id="z1" src="./images/setsubun_akaoni_mame.png" class="img-responsive akaoni" alt="Image">
+                <img id="i27" src="./images/fruit_peach.png" class="img-responsive peach" alt="Image">
+            </div>
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                <img id="z1" src="./images/setsubun_akaoni_mame.png" class="img-responsive akaoni" alt="Image">
+                <img id="i26" src="./images/illustrain03-setubun05.png" class="img-responsive peach" alt="Image">
+            </div>
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                <img id="z1" src="./images/setsubun_akaoni_mame.png" class="img-responsive akaoni" alt="Image">
+                <img id="i25" src="./images/onigiri_maru.png" class="img-responsive peach" alt="Image">
+            </div>
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                <img id="z1" src="./images/setsubun_akaoni_mame.png" class="img-responsive akaoni" alt="Image">
+                <img id="i24" src="./images/fruit_peach.png" class="img-responsive peach" alt="Image">
+            </div>
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                <img id="z1" src="./images/setsubun_akaoni_mame.png" class="img-responsive akaoni" alt="Image">
+                <img id="i23" src="./images/bread_cheese_pan.png" class="img-responsive peach" alt="Image">
+            </div>
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                <img id="z1" src="./images/setsubun_akaoni_mame.png" class="img-responsive akaoni" alt="Image">
+                <img id="i22" src="./images/fruit_peach.png" class="img-responsive peach" alt="Image">
+            </div>
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                <img id="z1" src="./images/setsubun_akaoni_mame.png" class="img-responsive akaoni" alt="Image">
+                <img id="i21" src="./images/onigiri_maru.png" class="img-responsive peach" alt="Image">
+            </div>
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                <img id="z1" src="./images/setsubun_akaoni_mame.png" class="img-responsive akaoni" alt="Image">
+                <img id="i20" src="./images/fruit_peach.png" class="img-responsive peach" alt="Image">
+            </div>
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                <img id="z1" src="./images/setsubun_akaoni_mame.png" class="img-responsive akaoni" alt="Image">
+                <img id="i19" src="./images/illustrain03-setubun05.png" class="img-responsive peach" alt="Image">
+            </div>
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                <img id="z1" src="./images/setsubun_akaoni_mame.png" class="img-responsive akaoni" alt="Image">
+                <img id="i18" src="./images/fruit_peach.png" class="img-responsive peach" alt="Image">
+            </div>
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                <img id="z1" src="./images/setsubun_akaoni_mame.png" class="img-responsive akaoni" alt="Image">
+                <img id="i17" src="./images/illustrain03-setubun05.png" class="img-responsive peach" alt="Image">
+            </div>
+        </div>
+        </div>
+        <br>
+        <div class="row ">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <button id="go" type="button" class="btn btn-block " style="background-color:hotpink;"><h4 style="color:white;"><strong>桃太郎ＧＯ</strong></h4></button>
+            </div>
+        </div>
+
+        <br>
+        <br>
+    </div>
+    <script>
+        var bricks = [];
+        var currentBrick = 0;
+        var forwardSteps = 0;
+
+        function abc() {
+            var n = 0;
+
+            while (true) {
+                ++n;
+                var brick = document.getElementById("i" + n);
+
+                if (!brick) {
+                    break;
+                }
+
+                //brick.src = "https://placehold.it/200?text=" + brick.id;
+                bricks.push(brick.parentNode);
+            }
+
+            document.getElementById("go").onclick = function () {
+                forwardSteps = (bricks.length * 3);
+                forwardSteps += Math.floor(Math.random() * bricks.length);
+
+                setTimeout(forwardBrick, 50)
+            }
+        }
+
+        function forwardBrick() {
+            bricks[currentBrick].className = bricks[currentBrick].className.replace("active", "");
+
+            currentBrick++;
+            forwardSteps--;
+
+            if (currentBrick >= bricks.length) {
+                currentBrick = 0;
+            }
+
+            bricks[currentBrick].className += " active";
+
+            if (forwardSteps > 128) {
+                setTimeout(forwardBrick, 300);
+            } else if (forwardSteps <= 128 && forwardSteps > 115) {
+                setTimeout(forwardBrick, 150);
+            } else if (forwardSteps <= 115 && forwardSteps > 105) {
+                setTimeout(forwardBrick, 80);
+            } else if (forwardSteps <= 105 && forwardSteps > 70) {
+                setTimeout(forwardBrick, 40);
+            } else if (forwardSteps <= 70 && forwardSteps > 40) {
+                setTimeout(forwardBrick, 60);
+            } else if (forwardSteps <= 40 && forwardSteps > 20) {
+                setTimeout(forwardBrick, 80);
+            } else if (forwardSteps <= 20 && forwardSteps > 5) {
+                setTimeout(forwardBrick, 150);
+            } else if (forwardSteps <= 5 && forwardSteps > 0) {
+                setTimeout(forwardBrick, 300);
+            } else {
+                //console.log(currentBrick)
+                if (currentBrick == "0" || currentBrick == "11" || currentBrick == "16" || currentBrick == "18" ||
+                    currentBrick == "27" || currentBrick == "25") {
+                    setTimeout(function () {
+                        alert("踩到豆子！你輸了！");
+                    }, 100);
+
+                    // clearTimeout(timer);
+                }
+            }
+        }
+
+        abc();
+    </script>
+</body>
+
+
+</html>

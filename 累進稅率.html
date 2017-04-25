@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>累進稅率</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="./stylesheets/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .top {
+            background-color: beige;
+            border-bottom: gray 5px solid;
+        }
+
+        body {
+            background: #FBF6EE;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div class="container-fluid top">
+        <div class="container c">
+            <div class="row b">
+                <a href="#"><img src="./images/eye12_side2.png" class="img" alt="Image" width="150"></a>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <br>
+
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <form action="" method="post" id="form" class="form-inline">
+                    <h4><strong>。請輸入總收入</strong></h4>
+                    <input id="input" type="text" class="form-control" placeholder="總收入" style="width: 200px;">
+                    <button class="btn btn-default" type="button" onclick="computeTax()">分析結果</button>
+                </form>
+            </div>
+
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <div class="alert alert-success" role="alert">
+                    <h4>結果</h4>
+                </div>
+                <div>
+                    <ul id="Result" class="list-group" style="float:none;">
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var taxRateLookup = [{
+                min: 0,
+                max: 540000,
+                rate: .05
+            },
+            {
+                min: 540000,
+                max: 1210000,
+                rate: .12
+            },
+            {
+                min: 1210000,
+                max: 2420000,
+                rate: .2
+            },
+            {
+                min: 2420000,
+                max: 4530000,
+                rate: .3
+            },
+            {
+                min: 4530000,
+                max: 10310000,
+                rate: .4
+            },
+            {
+                min: 10310000,
+                max: null,
+                rate: .5
+            }
+        ];
+
+        function computeTax() {
+            var myTotalIncome = document.getElementById("input").value;
+            var shouldPayTax = 0;
+
+            for (var i = 0; i < taxRateLookup.length; i++) {
+                var level = taxRateLookup[i];
+
+                if (level.max == null) {
+                    if (myTotalIncome > level.min) {
+                        shouldPayTax += (myTotalIncome - level.min) * level.rate;
+                    }
+                } else if (myTotalIncome <= level.min) {
+                    // PASS
+                } else if (myTotalIncome > level.min && myTotalIncome <= level.max) {
+                    shouldPayTax += (myTotalIncome - level.min) * level.rate;
+                } else {
+                    shouldPayTax += (level.max - level.min) * level.rate;
+                }
+            }
+
+            shouldPayTax = Math.ceil(shouldPayTax);
+
+            var listItem = document.createElement("li");
+            listItem.className = "list-group-item";
+            listItem.innerHTML = "<p>總收入: " + myTotalIncome + "，應繳: " + shouldPayTax + "</p>";
+
+            document.getElementById("Result").appendChild(listItem);
+        }
+
+        document.getElementById("input").onkeyup = function (event) {
+            if (event.keyCode == 13) {
+                computeTax();
+            }
+        }
+    </script>
+</body>
+
+</html>

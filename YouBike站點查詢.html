@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>YouBike站點查詢</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="./stylesheets/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .top {
+            background-color: beige;
+            border-bottom: gray 5px solid;
+        }
+
+        body {
+            background: #FBF6EE;
+        }
+
+        .btn.btn-default {
+            width: 200px;
+        }
+
+        .address {
+            color: gray;
+            font-weight: bold;
+            font-style: oblique;
+            font-size: 12pt;
+            
+        }
+
+        .alert.alert-info {
+            height: 320px;
+            width: 100%;
+            
+        }
+        .img-responsive{
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div class="container-fluid top">
+        <div class="container c">
+            <div class="row b">
+                <a href="#"><img src="./images/eye12_side2.png" class="img" alt="Image" width="150"></a>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <br>
+
+            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+
+                <div class="row">
+                    <h2><strong>YouBike站點查詢</strong></h2>
+                </div>
+
+                <div class="row">
+                    <div id="areas" class="btn-group-vertical" role="group">
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+
+                <div class="row">
+                    <div class="alert alert-success" role="alert">
+                        <h4>結果</h4>
+                    </div>
+                </div>
+
+                <div id="results" class="row">
+
+                </div>
+
+
+            </div>
+        </div>
+
+
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
+    <script id="youBike" type="text/x-jquery-tmpl">
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 getresult">
+            <div class="alert alert-info">
+                <h4>${sna}</h4>
+                <img src="https://maps.googleapis.com/maps/api/staticmap?center=${lat},${lng}&markers=color:black|${lat},${lng}&size=200x200&key=AIzaSyDOXdL-OyMxlXtdf5LoYGd8tJW0XEQ9Ddc"
+                    class="img-responsive">
+                    <br>
+                <a class="address" href="https://www.google.com.tw/maps/?q=${lat},${lng}" target="_blank">${ar}</a>
+            </div>
+        </div>
+    </script>
+    <script>
+        $(function () {
+            var $areas = $("#areas");
+            var $results = $("#results");
+
+            $.ajax({
+                type: "GET",
+                data: null,
+                url: "http://buildschool-chu.azurewebsites.net/youbike/district",
+                dataType: "jsonp", //jsonp表示跨域
+                success: function (result, status, xhr) {
+                    $areas.empty();
+                    $results.empty();
+                    $(result).each(function (i, areaName) {
+                        $("<a></a>")
+                            .attr("href", "#")
+                            .data("area", areaName)
+                            .text(areaName) //路線名字
+                            .addClass("btn") //按鈕
+                            .addClass("btn-default") //按鈕樣式
+                            .appendTo($areas);
+                    });
+                }
+            });
+            $areas.on("click", "a.btn", function (event) {
+                var $a = $(this), //當前點擊的按鈕
+                    areaName = $a.data("area");
+
+
+                $a
+                    .addClass("btn-info") //現在點的按鈕
+                    .siblings("a.btn-info") //找到上一個點的按鈕
+                    .removeClass("btn-info"); //把上一個按鈕的顏色去掉
+
+                $results.empty();
+
+
+                $.ajax({
+                    type: "GET",
+                    data: {
+                        "district": areaName
+                    },
+                    url: "http://buildschool-chu.azurewebsites.net/youbike/index",
+                    dataType: "jsonp",
+                    success: function (result, status, xhr) {
+                        $(result).each(function (i, item) {
+                            $("#youBike")
+                                .tmpl(item)
+                                .data("json", item)
+                                .appendTo($results);
+                        });
+                    }
+                });
+                return false;
+            });
+            $results.on("click", "a.address", function (event) {
+                var $a = $(this),
+                    $results = $a.parents(".getresult"),
+                    getyouBike = $results.data("json");
+
+                $("#youBikeMap").remove();
+                $("<iframe></iframe>")
+                    .attr("id", "youBikeMap")
+                    .attr("width", "100%")
+                    .attr("height", 300)
+                    .attr("frameBorder", 0)
+                    .attr("src",
+                        "https://www.google.com/maps/embed/v1/place?key=AIzaSyBJADoRetu48862wwZAykrCrUmO3gOGI90&q=" +
+                        getyouBike.lat + "," + getyouBike.lng)
+                    .prependTo($("#results"));
+
+                return false;
+            });
+        });
+    </script>
+</body>
+
+</html>

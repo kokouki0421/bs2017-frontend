@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="./stylesheets/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 微軟正黑體;
+        }
+
+        .input p {
+            padding: 10px 10px;
+        }
+
+        .menu-area ul {
+            list-style: none;
+        }
+
+        .menu-area ul li {
+            width: 100px;
+            float: left;
+        }
+
+        .menu-area ul li.long {
+            width: 200px;
+            float: left;
+        }
+
+        .menu-area ul li a {
+            display: block;
+            text-align: center;
+            color: darkblue;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="alert alert-success" role="alert">
+            <div class="row">
+                <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                    <p class="pull-left">Welcome Anna Andersson / 21 march,2017</p>
+                </div>
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <p class="pull-right"><a href="#">Personal setting</a><br>
+                        <a href="#">Help</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
+                <div class="alert alert-warning pull-left" role="alert">
+                    <p>[intranet name]</p>
+                </div>
+            </div>
+            <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                <div class="alert alert-warning pull-right" role="alert">
+                    <div> <strong> Search：　　</strong><label><input type="radio" name="convert-to" value="All">"All"　　　　</label>
+                        <label><input type="radio" name="convert-to" value="Contacts">Contacts　　</label>
+                    </div>
+                    <div>
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder=""> <span class="input-group-btn"><button class="btn btn-default" type="button">Go</button></span>
+                        </div>
+
+                        <div>
+                            <a class="pull-right" href="#">Advenced search</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="alert alert-info" role="alert">
+            <div class="row menu-area" style="padding-left: 30px;">
+                <ul class="list-inline">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">News</a></li>
+                    <li class="long"><a href="#">Projects & Collaboration</a></li>
+                    <li class="long"><a href="#">Policies & Procrdures</a></li>
+                    <li class="long"><a href="#">Tools & Services</a></li>
+                    <li><a href="#">Organization</a></li>
+                    <li class="long"><a href="#">Me & Skanska</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                <p>You are here：Home</p>
+                <h3>Home</h3>
+            </div>
+
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                <br><br>
+                <p><a href="#">Customize page</a></p>
+            </div>
+
+        </div>
+        <hr>
+        <div class="row">
+
+            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                <div class="panel panel-success">
+                    <div class="panel-heading">NiNi</div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                <img src="http://fakeimg.pl/60x60?font=lobster" class="img-responsive pull-left" alt="Image">
+                            </div>
+                            <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                                <div class="pull-left" style="list-style: none;">
+                                    <li>Phone number</li>
+                                    <li>Cell number</li>
+                                    <li>Title</li>
+                                    <li>Business unit</li>
+                                    <li>Company / dep</li>
+                                    <br>
+                                </div>
+                                <a class="pull-right" href="#">Edit profile</a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-info">
+                    <div class="panel-heading">My tools</div>
+                    <div class="panel-body">
+                        <div style="list-style: none;">
+                            <li>Media bank</li>
+                            <li>Accounting system</li>
+                            <li>Talent navigator</li>
+                            <li>etc...</li>
+                        </div>
+                        <a class="pull-right" href="#">Edit my tools</a>
+                    </div>
+                </div>
+                <div class="panel panel-warning">
+                    <div class="panel-heading">My shortcuts</div>
+                    <div class="panel-body">
+                        <div style="list-style: none;">
+                            <li>Link A</li>
+                            <li>Link B</li>
+                            <li>Link C</li>
+                        </div>
+                        <a class="pull-right" href="#">Edit shortcuts</a>
+                    </div>
+                </div>
+                <div class="panel panel-danger">
+                    <div class="panel-heading">Skanska shortcuts</div>
+                    <div class="panel-body">
+                        <div style="list-style: none;">
+                            <div style="list-style: none;">
+                                <li>Decided by business unit</li>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <div class="list-group">
+                    <p class="list-group-item disabled">My notifications</p>
+                    <p class="list-group-item">Projects System<span class="pull-right">7 notifications</span></p>
+                    <p class="list-group-item">Workspaces<span class="pull-right">4 notifications</span></p>
+                    <p class="list-group-item">News System<span class="pull-right">2 notifications</span></p>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">Top story</div>
+                    <div class="panel-body">
+                        03/21/2017 Build School spring class start
+                        <div class="row">
+                            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                <img src="http://fakeimg.pl/200x200?font=lobster" class="img-responsive pull-left" alt="Image">
+                            </div>
+                            <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                                <div>
+                                    <br>
+                                    <p>Cupidatat eu excepteur id in ex velit tempor. Velit qui deserunt sint consequat consequat
+                                        do occaecat cupidatat. Deserunt duis amet velit voluptate mollit ut sint.</p>
+                                </div>
+                                <br>
+                                <div class="list-inline" style=" list-style: none;text-align: center;">
+                                    <li><a href="#">Read more |</a></li>
+                                    <li><a href="#">Comments(3) |</a></li>
+                                    <li><a href="#">Other top stories</a></li>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h5>News</h5>
+                <div>
+                    <ul class="nav nav-tabs">
+                        <li role="presentation" class="active"><a href="#">All</a>
+                        </li>
+                        <li role="presentation"><a href="#">My local</a></li>
+                        <li role="presentation"><a href="#">My unit</a></li>
+                        <li role="presentation"><a href="#">My country</a></li>
+                        <li role="presentation"><a href="#">Global</a></li>
+                    </ul>
+                    <div id="myTabContent" class="tab-content">
+                        <div class="tab-pane fade in active">
+                            <div class="panel-body">
+                                03/21/2017 Build School spring class start
+                                <div class="row">
+                                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                        <img src="http://fakeimg.pl/200x200?font=lobster" class="img-responsive pull-left" alt="Image">
+                                    </div>
+                                    <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                                        <div>
+                                            <br>
+                                            <p>Cupidatat eu excepteur id in ex velit tempor. Velit qui deserunt sint consequat
+                                                consequat do occaecat cupidatat. Deserunt duis amet velit voluptate mollit
+                                                ut sint.</p>
+                                        </div>
+                                        <br>
+                                        <div class="list-inline " style=" list-style: none;float: left;">
+                                            <li><a href="#">Read more |</a></li>
+                                            <li><a href="#">Comments(3)</a></li>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div>
+                                    <p> 03/21/2017 Build School spring class start</p><br>
+                                    <p>Elit laborum eiusmod aliquip qui. Sunt aliquip culpa aute dolor tempor adipisicing aute
+                                        nisi velit consectetur occaecat. Officia sit enim magna et Lorem. Qui irure magna
+                                        do minim consequat. </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                <div class="panel panel-success">
+                    <div class="panel-heading">Banners</div>
+                    <div class="panel-body">
+                        <p>Examples：</p>
+                        <div>
+                            <li>Meet our new symbol - Green</li>
+                            <li>Saaaaaaaaaa</li>
+                            <li>bbbbbbbbbbb</li>
+                            <li>cccccccccccc</li>
+                            <li>cccccccccccc</li>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-info">
+                    <div class="panel-heading">My Gadgets</div>
+                    <div class="panel-body">
+                        <div>
+                            <li>Meet our new symbol - Green</li>
+                            <li>Saaaaaaaaaa</li>
+                            <li>bbbbbbbbbbb</li>
+                            <li>cccccccccccc</li>
+                            <li>cccccccccccc</li>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>

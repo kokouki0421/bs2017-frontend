@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>公車時刻表</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="./stylesheets/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .top {
+            background-color: beige;
+            border-bottom: gray 5px solid;
+        }
+
+        body {
+            background: #FBF6EE;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div class="container-fluid top">
+        <div class="container c">
+            <div class="row b">
+                <a href="#"><img src="./images/eye12_side2.png" class="img" alt="Image" width="150"></a>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <br>
+
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <h2><strong>新竹市免費公車時刻表</strong></h2>
+            </div>
+
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <div class="alert alert-success" role="alert">
+                    <h4>結果</h4>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <div id="routes" class="btn-group-vertical" role="group">
+
+                </div>
+            </div>
+
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <div>
+                    <ul id="Result" class="list-group" style="float:none;">
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+        $(function () {
+                    var $routes = $("#routes");
+                    var $results = $("#Result");
+
+                    $.ajax({
+                        type: "GET",
+                        data: null,
+                        url: "https://gist.githubusercontent.com/dinowang/5ee16b9758a5d5210681269185ff93a7/raw/fb8357327b3dcb0ce7ee8887e135562c6d21bc30/hsinchu-bus-routes.json",
+                        dataType: "json",
+                        success: function (result, status, xhr) {
+                            $routes.empty();
+                            $results.empty();
+                            $(result).each(function (i, item) {
+                                $("<a></a>")
+                                    .attr("href", item.jsonUrl)
+                                    .text(item.route) //路線名字
+                                    .addClass("btn") //按鈕
+                                    .addClass("btn-default") //按鈕樣式
+                                    .appendTo($routes);
+                            });
+                        }
+                    });
+                    $routes.on("click", "a.btn", function (event) {
+                            var $a = $(this); //當前點擊的按鈕
+                            $a
+                                .addClass("btn-info") //現在點的按鈕
+                                .siblings("a.btn-info") //找到上一個點的按鈕
+                                .removeClass("btn-info"); //把上一個按鈕的顏色去掉
+                            $results.empty();
+                            $.ajax({
+                                    type: "GET",
+                                    data: null,
+                                    url: $a.attr("href"),
+                                    dataType: "json",
+                                    success: function (result, status, xhr) {
+                                        $(result).each(function (i, item) {
+                                                var n = 1,
+                                                    schedules = [];
+                                                while (item["班次" + n]) {
+                                                    schedules.push(item["班次" + n]);
+                                                    n++;
+                                                }
+                                                $("<li></li>")
+                                                    .addClass("list-group-item")
+                                                    .html("(" + item.序號 + ")路線編號：" + item.路線編號 +
+                                                        "，起訖站：" + item.起訖站 + "<br>" + "班次：" +schedules.join("、"))
+                                                        .appendTo($results);
+                                                    });
+                                        }
+                                    });
+                                return false;
+                            });
+
+                    });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>路外停車</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="./stylesheets/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .top {
+            background-color: beige;
+            border-bottom: gray 5px solid;
+        }
+
+        body {
+            background: #FBF6EE;
+        }
+
+        .btn.btn-default {
+            width: 200px;
+        }
+
+        .panel-body {
+            height: 250px;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div class="container-fluid top">
+        <div class="container c">
+            <div class="row b">
+                <a href="#"><img src="./images/eye12_side2.png" class="img" alt="Image" width="150"></a>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <br>
+
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+
+                <div class="row">
+                    <h2><strong>路外停車資訊查詢</strong></h2>
+                </div>
+
+                <div class="row">
+                    <div id="areas" class="btn-group-vertical" role="group">
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+
+                <div class="row">
+                    <div class="alert alert-success" role="alert">
+                        <h4>結果</h4>
+                    </div>
+                </div>
+
+                <div id="results" class="row">
+
+                </div>
+
+
+            </div>
+        </div>
+
+
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
+    <script id="parking" type="text/x-jquery-tmpl">
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 parkingLot">
+            <div class="panel panel-info">
+                <div class="panel-heading">${parkName}</div>
+                <div class="panel-body">
+                    <p>${introduction}</p>
+                    <p>${payGuide}</p>
+                    <a class="address" href="https://www.google.com.tw/maps/?q=${wgsY},${wgsX}" target="_blank">${address}</a>
+                </div>
+            </div>
+        </div>
+    </script>
+    <script>
+        $(function () {
+            var $areas = $("#areas");
+            var $results = $("#results");
+
+            $.ajax({
+                type: "GET",
+                data: null,
+                url: "http://buildschool-chu.azurewebsites.net/parking/areas",
+                dataType: "jsonp", //jsonp表示跨域
+                success: function (result, status, xhr) {
+                    $areas.empty();
+                    $results.empty();
+                    $(result).each(function (i, areaName) {
+                        $("<a></a>")
+                            .attr("href", "#")
+                            .data("area", areaName)
+                            .text(areaName) //路線名字
+                            .addClass("btn") //按鈕
+                            .addClass("btn-default") //按鈕樣式
+                            .appendTo($areas);
+                    });
+                }
+            });
+            $areas.on("click", "a.btn", function (event) {
+                var $a = $(this), //當前點擊的按鈕
+                    areaName = $a.data("area");
+
+
+                $a
+                    .addClass("btn-info") //現在點的按鈕
+                    .siblings("a.btn-info") //找到上一個點的按鈕
+                    .removeClass("btn-info"); //把上一個按鈕的顏色去掉
+
+                $results.empty();
+
+
+                $.ajax({
+                    type: "GET",
+                    data: {
+                        "area": areaName
+                    },
+                    url: "http://buildschool-chu.azurewebsites.net/parking/index",
+                    dataType: "jsonp",
+                    success: function (result, status, xhr) {
+                        $(result).each(function (i, item) {
+                            $("#parking")
+                                .tmpl(item)
+                                .data("json", item)
+                                .appendTo($results);
+                        });
+                    }
+                });
+                return false;
+            });
+            $results.on("click", "a.address", function (event) {
+                var $a = $(this),
+                    $results = $a.parents(".parkingLot"),
+                    parkingLot = $results.data("json");
+
+                $("#parkingLotMap").remove();
+                $("<iframe></iframe>")
+                    .attr("id", "parkingLotMap")
+                    .attr("width", "100%")
+                    .attr("height", 300)
+                    .attr("frameBorder", 0)
+                    .attr("src",
+                        "https://www.google.com/maps/embed/v1/place?key=AIzaSyBJADoRetu48862wwZAykrCrUmO3gOGI90&q=" +
+                        parkingLot.wgsY + "," + parkingLot.wgsX)
+                    .prependTo($("#results"));
+
+                return false;
+            });
+        });
+    </script>
+</body>
+
+</html>
