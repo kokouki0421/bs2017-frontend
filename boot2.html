@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="../../favicon.ico">
+
+  <title>猜數字</title>
+
+  <link href="stylesheets/bootstrap.min.css" rel="stylesheet">
+
+  <link href="stylesheets/dashboard.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 微軟正黑體;
+    }
+  </style>
+
+</head>
+
+<body id="a" waid71fa0d88-5390-4b5b-a2f4-e45fa93d85e2="SA password protect entry checker">
+
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+          aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        <a class="navbar-brand" href="#"><strong>猜數字</strong></a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#">Dashboard</a></li>
+          <li><a href="#">Settings</a></li>
+          <li><a href="#">Profile</a></li>
+          <li><a href="#">Help</a></li>
+        </ul>
+        <form class="navbar-form navbar-right">
+          <input type="text" class="form-control" placeholder="Search...">
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-3 col-md-2 sidebar">
+        <ul class="nav nav-sidebar">
+          <li class="active"><a href="index.html">首頁<span class="sr-only">(current)</span></a></li>
+          <li><a href="boot.html">溫度轉換</a></li>
+          <li><a href="boot2.html">猜數字</a></li>
+          <li><a href="boot3.html" target="_blank">哈特利網誌</a></li>
+          <li><a href="boot4.html" target="_blank">bootstrap排版</a></li>
+        </ul>
+        <ul class="nav nav-sidebar">
+          <li><a href="boot5.html" target="_blank">煎餅網</a></li>
+          <li><a href="肉球新聞.html" target="_blank">肉球新聞</a></li>
+          <li><a href="生命靈數.html" target="_blank"></a>生命靈數</li>
+          <li><a href="小瑪莉2.html" target="_blank"></a>小瑪莉</li>
+          <li><a href="公車時刻表.html" target="_blank">公車時刻表</a></li>
+        </ul>
+        <ul class="nav nav-sidebar">
+          <li><a href="累進稅率.html" target="_blank">累進稅率</a></li>
+          <li><a href="路外停車(地圖內嵌版).html" target="_blank">路外停車</a></li>
+          <li><a href="YouBike站點查詢.html" target="_blank">YouBike</a></li>
+        </ul>
+      </div>
+      <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+        <div class="btn-group btn-group-justified" role="group" aria-label="...">
+
+          <a class="btn btn-default" href="#" role="button" onclick="startGame()">開始</a>
+          <a class="btn btn-default" href="#" role="button" onclick="abortGame()">放棄重來</a>
+          <a class="btn btn-default" href="#" role="button" onclick="showAnswer()">看答案</a>
+        </div>
+        <br>
+        <ul class="list-group" id="guessResult">
+          <li class="list-group-item">
+            <span class="label label-danger pull-left">2A2B</span>　1234
+          </li>
+          <li class="list-group-item">
+            <span class="label label-danger pull-left">1A3B</span>　5678
+          </li>
+          <li class="list-group-item">
+            <span class="label label-danger pull-left">1A0B</span>　1314
+          </li>
+          <li class="list-group-item">
+            <span class="label label-danger pull-left">2A0B</span>　4567
+          </li>
+          <li class="list-group-item">
+            <span class="label label-danger pull-left">3A0B</span>　5821
+          </li>
+          <li class="list-group-item">
+            <span class="label label-success pull-left">4A0B</span>　8529
+          </li>
+        </ul>
+        <div class="input-group">
+          <span class="input-group-addon" id="basic-addon1">猜答案</span>
+          <input id="input" type="text" class="form-control" aria-label="...">
+          <div class="input-group-btn">
+            <a class="btn btn-default" href="#" role="button" onclick="doGuess()">猜!</a>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+  <!-- Bootstrap core JavaScript
+    ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <!--<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>-->
+  <script src="scripts/bootstrap.min.js"></script>
+  <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+  <!--<script src="../../assets/js/vendor/holder.min.js"></script>-->
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <!--<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>-->
+
+  <script>
+    var answer = "";
+    //startGame();
+    document.getElementById("a").onkeyup = function (event) {
+      if (event.keyCode == 113) {
+        startGame();
+      } else if (event.keyCode == 27) {
+        abortGame();
+      } else if (event.keyCode == 220) {
+        showAnswer();
+      }
+    };
+
+    function startGame() {
+      document.getElementById("guessResult").innerHTML = ""; //清空答案紀錄
+      document.getElementById("input").value = ""; //清空輸入
+
+      answer = "";
+      while (answer.length < 4) {
+        var Num = Math.floor(Math.random() * 10); //取亂數
+
+        if (answer.indexOf(Num) == -1) { //answer裡找Num的位置,如果不在answer內就加上
+          answer += Num;
+        }
+
+      }
+      alert("Are You Ready~?");
+      document.getElementById("input").onkeyup = function (event) {
+        if (event.keyCode == 13) {
+          doGuess();
+        }
+      };
+    }
+
+
+    function abortGame() {
+      if (confirm("確定要重來嗎？")) {
+        startGame();
+      }
+
+    }
+
+    function showAnswer() {
+      alert("答案是" + answer);
+    }
+
+    function doGuess() {
+      var thisRoundAnswer = document.getElementById("input").value;
+      if (isNaN(thisRoundAnswer) == 1) { //判斷是否為字母
+        alert("請輸入數字");
+
+      } else if (thisRoundAnswer.length != 4) { //判斷有沒有四個字
+        alert("請輸入四個數字");
+        return;
+      }
+
+      var a = 0;
+      var b = 0;
+      var z = "";
+      for (var i = 0; i < thisRoundAnswer.length; i++) {
+        var number = thisRoundAnswer.charAt(i);
+
+        if (z.indexOf(number) != -1) {
+          alert("數字重複");
+          return;
+        }
+        var position = answer.indexOf(number); //判斷幾 A 幾 B
+        if (position == i) {
+          a++;
+        } else if (position != -1) {
+          b++;
+        }
+        z += thisRoundAnswer.charAt(i);
+      }
+      var ab = a + "A" + b + "B";
+      var Result = document.createElement("li")
+      Result.className = "list-group-item";
+      if (a == 4) {
+        Result.innerHTML = "<span class=\"label label-success pull-left\">" + ab + " </span>" + thisRoundAnswer;
+        alert("恭喜過關");
+      } else {
+        Result.innerHTML = "<span class=\"label label-danger pull-left\">" + ab + " </span>" + thisRoundAnswer;
+      }
+      document.getElementById("guessResult").appendChild(Result);
+      document.getElementById("input").value = "";
+    }
+  </script>
+
+</body>
+
+</html>
