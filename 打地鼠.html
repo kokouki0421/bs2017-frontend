@@ -269,7 +269,11 @@
 
                   
                 });
-
+                function music(){
+                    var audio = document.createElement("audio");
+                    audio.src = "./music/Manic_Polka.mp3";
+                    audio.play();
+                }
 
 
                 function createPlayground(edge) {
@@ -290,10 +294,6 @@
                             marginTop: -1.05* ($table.outerHeight() / 2),
                             marginLeft: -1.5 * ($table.outerWidth() / 2)
                         });
-
-                    var audio = document.createElement("audio");
-                    audio.src = "./music/Manic_Polka.mp3";
-                    audio.play();
                 }
 
                 function startGame() {
@@ -376,7 +376,7 @@
                    
                     
                 }
-                
+                music();
                 createPlayground(3);
             });
         </script>
