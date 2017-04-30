@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            @keyframes photochange {
+                0% {
+                    background-image: url("./images/mogura-illust7.png");
+                    background-size: 120px 120px;
+                    background-position: center center;
+                }
+                32% {
+                    background-image: url("./images/(mogura-illust7.png");
+                    background-size: 120px 120px;
+                    background-position: center center;
+                }
+                33% {
+                    background-image: url("./images/槌子1.png"), 
+                                      url(./images/mogura-illust71.png);
+                    background-size: 120px 120px,
+                                     120px 120px;
+                    background-position: 150px 100px, 
+                                         center center;
+                }
+                65% {
+                    background-image: url("./images/槌子1.png"), 
+                                      url(./images/mogura-illust71.png);
+                    background-size: 120px 120px,
+                                     120px 120px;
+                    background-position: 150px 100px, 
+                                         center center;
+                }
+                66% {
+                    background-image: url("./images/槌子.png"), 
+                                      url("./images/mogura-illust7-hit.png");
+                    background-size: 120px 120px,
+                                     120px 120px;
+                    background-position: 150px 100px, 
+                                         center center;
+                }
+                100% {
+                    background-image: url("./images/槌子.png"), 
+                                      url("./images/mogura-illust7-hit.png");
+                    background-size: 120px 120px,
+                                     120px 120px;
+                    background-position: 150px 100px, 
+                                         center center;
+                }
+            }
+            /*@-webkit-keyframes photochange {
+                0% {
+                    background-image: url(mogura-illust7.png);
+                    background-size: 200px 200px;
+                }
+                33% {
+                    background-image: url(mogura-illust10.png);
+                }
+                66% {
+                    background-image: url(mogura-illust7-hit.png);
+                }
+                100% {
+                    background-image: url(mogura-illust7-hit.png);
+                }
+            }
+            @-moz-keyframes photochange {
+                0% {
+                    background-image: url(mogura-illust7.png);
+                }
+                33% {
+                    background-image: url(mogura-illust10.png);
+                }
+                66% {
+                    background-image: url(mogura-illust7-hit.png);
+                }
+                100% {
+                    background-image: url(mogura-illust7-hit.png);
+                }
+            }*/
+            .mole {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                width: 500px;
+                height: 500px;
+                margin: auto;
+
+                background-repeat: no-repeat;
+
+                animation: photochange 2s infinite;
+                /*-webkit-animation: photochange 2s infinite;
+                -moz-animation: photochange 2s infinite;*/
+            }
+        </style>
+    </head>
+    <body>
+        <div class="mole"></div>
+    </body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            @keyframes photochange {
+                0% {
+                    background-image: url("./images/mogura-illust7.png");
+                }
+                32% {
+                    background-image: url("./images/mogura-illust7.png");
+                }
+                33% {
+                    background-image: url("./images/mogura-illust10.png");
+                    background-size: 450px 450px;
+                    background-position: -140px -140px;
+                }
+                65% {
+                    background-image: url("./images/mogura-illust10.png");
+                    background-size: 450px 450px;
+                    background-position: -140px -140px;
+                }
+                66% {
+                    background-image: url("./images/mogura-illust7-hit.png");
+                }
+                100% {
+                    background-image: url("./images/mogura-illust7-hit.png");
+                }
+            }
+            @-webkit-keyframes photochange {
+                0% {
+                    background-image: url("./images/mogura-illust7.png");
+                    background-size: 200px 200px;
+                }
+                33% {
+                    background-image: url("./images/mogura-illust10.png");
+                }
+                66% {
+                    background-image: url("./images/mogura-illust7-hit.png");
+                }
+                100% {
+                    background-image: url("./images/mogura-illust7-hit.png");
+                }
+            }
+            @-moz-keyframes photochange {
+                0% {
+                    background-image: url("./images/mogura-illust7.png");
+                }
+                33% {
+                    background-image: url("./images/mogura-illust10.png");
+                }
+                66% {
+                    background-image: url("./images/mogura-illust7-hit.png");
+                }
+                100% {
+                    background-image: url("./images/mogura-illust7-hit.png");
+                }
+            }
+            .mole {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                width: 500px;
+                height: 500px;
+                margin: auto;
+
+                background-size: 200px 200px;
+                background-repeat: no-repeat;
+                background-position: center center;
+
+                animation: photochange 5s infinite;
+                /*-webkit-animation: photochange 2s infinite;
+                -moz-animation: photochange 2s infinite;*/
+            }
+        </style>
+    </head>
+    <body>
+        <div class="mole"></div>
+    </body>
+</html>

@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>打地鼠</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        html {
+            /*cursor: */
+            /*cursor: url(http://images.vectorhq.com/images/thumbs/c64/gavel-103422.png);*/
+        }
+
+        body::before {
+            content: "";
+            background: url(http://2.bp.blogspot.com/-Ck0Ergxbmcw/WOsvU6PsJKI/AAAAAAABDo0/ZydF-oZ0x1AKEPVU75VZ8dfJi-GUP-k_QCLcB/s800/bg_inaka_tanbo.jpg)no-repeat;
+            background-size: 1400px;
+            width: 100%;
+            height: 100%;
+            opacity: .4;
+            position: absolute;
+        }
+
+        #game {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            /*cursor: url("./images/onigiri_maru - 複製.png"),auto;*/
+            cursor: url("./images/ishi.png"), auto;
+        }
+
+        #playground {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 1px;
+            height: 1px;
+            margin: auto;
+        }
+
+        #playground table {
+            margin-top: -180px;
+            margin-left: -180px;
+        }
+
+        #playground .mole {
+            width: 120px;
+            height: 120px;
+            line-height: 120px;
+            text-align: center;
+            /*background-image: url(https://3.bp.blogspot.com/-UOegW9Rmbr0/V9vCf2YTvrI/AAAAAAAA9-U/BQ9_qEojg0wrLgQcMtyVAebp3j9GHG04wCLcB/s300/kusa_simple3.png);*/
+            background-repeat: no-repeat;
+            background-size: 120px 60px;
+            background-position: top 0;
+            position: relative;
+        }
+
+        #playground .mole::before {
+            content: "";
+            width: 80px;
+            height: 80px;
+            /*background-image: url(http://chicodeza.com/wordpress/wp-content/uploads/mogura-illust7.png);*/
+            background-image: url(http://chicodeza.com/wordpress/wp-content/uploads/mogura-illust8.png);
+            background-repeat: no-repeat;
+            background-size: 80px 80px;
+            background-position: top 0;
+            position: absolute;
+            top: 40px;
+            left: 20px;
+            opacity: .5;
+            transition: all 1s;
+        }
+
+        #playground .mole.active::before {
+            background-image: url(http://chicodeza.com/wordpress/wp-content/uploads/mogura-illust7.png);
+            top: 0;
+            background-size: 100px;
+            position: absolute;
+            background-position: center 10px;
+            opacity: 1;
+            transition: all .3s;
+        }
+
+        #playground .mole.hit::before {
+            background-image: url("./images/mogura-illust7-hit.png");
+            top: 5px;
+            background-size: 100px;
+            background-position: center;
+            opacity: 1;
+            transition: all .2s;
+            cursor: url("./images/ishi2.png"), auto;
+        }
+
+        #playground .mole::after {
+            content: "";
+            width: 120px;
+            height: 60px;
+            background-image: url(https://3.bp.blogspot.com/-HbNPZ_N3YpE/V9vCgCyc4dI/AAAAAAAA9-c/67Bh2mF4WgcwIXe7ZM-veXcIJ_g8Zo_jQCLcB/s300/kusa_simple4.png);
+            background-repeat: no-repeat;
+            background-size: 120px 60px;
+            background-position: top 0;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+
+        #score {
+
+            position: fixed;
+            min-width: 250px;
+            right: 0;
+            top: 20px;
+            /*background: rgba(255, 128, 64, .4);*/
+            padding: 20px;
+            z-index: 0;
+            font-family: Consolas;
+        }
+
+        #score::before {
+            background: rgba(175, 175, 175, .3);
+            position: absolute;
+            min-width: 250px;
+            right: 0;
+            top: 20px;
+            height: 360px;
+            content: "";
+            padding: 20px;
+            /*filter: blur(2px);*/
+            z-index: -1;
+            border-bottom-left-radius: 2em;
+            border-top-left-radius: 2em;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="game">
+        <div id="playground">
+            <table>
+                <tr>
+                    <td>
+                        <div class="mole active"></div>
+                    </td>
+                    <td>
+                        <div class="mole hit"></div>
+                    </td>
+                    <td>
+                        <div class="mole"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="mole"></div>
+                    </td>
+                    <td>
+                        <div class="mole"></div>
+                    </td>
+                    <td>
+                        <div class="mole"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="mole"></div>
+                    </td>
+                    <td>
+                        <div class="mole"></div>
+                    </td>
+                    <td>
+                        <div class="mole"></div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div id="score">
+            <h2 class="text" style="color:firebrick;">Scoreboard</h2>
+            <h3>
+                <span class="text score" style="color:darkslategray;">Your score: <span>
+                    <span id="current-score" class="scores">0</span>
+            </h3>
+            <h3>
+                <span class="text level" style="color:darkslategray;">Level: <span>
+                    <span id="current-level" class="scores" >1</span>
+            </h3>
+            <h3>
+                <span class="text" style="color:darkslategray;">Life: <span>
+                    
+                </h3>
+                <div class="progress" >
+                    <div id="progress" class="progress-bar" role="progressbar" aria-valuenow="100"
+                     aria-valuemin="0" aria-valuemax="100" style="width: 100%;background-color:crimson">
+                        100
+                    </div>
+                </div>
+                <hr>
+                <p>
+                    <select id="sizing" class="form-control">
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </p>
+                <p>
+                    <button id="start" class="btn btn-default">Start</button>
+                    <button id="stop" class="btn btn-default">Stop</button>
+                </p>
+            </div>
+            <div id="control">
+            </div>
+        </div>
+        <!--<audio class="audio" controls preload="none">
+            <source class="backgroundmusic"src="" type="">
+            <source class="crysound"src="http://ysc.yisell.com/yisell/ycys2017030818030888/sound/yisell_sound_2014081223563675612_66366.mp3" type="audio/mp3">
+        </audio>-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script>
+             $(function () {
+                var score = 0,
+                    life = 100,
+                    timer = null,
+                    levelProfiles = [
+                        { level: 1, score: 0, moles: 1, interval: 1500 },
+                        { level: 2, score: 100, moles: 2, interval: 1500 },
+                        { level: 3, score: 200, moles: 2, interval: 1250 },
+                        { level: 4, score: 300, moles: 2, interval: 1000 },
+                        { level: 5, score: 500, moles: 3, interval: 1000 },
+                        { level: 6, score: 1000, moles: 3, interval: 750 },
+                    ];
+                var $playground = $("#playground");
+                var $moles = $('.mole');
+                $playground.on("click", ".mole.active", function () {
+                    // 打地鼠事件
+                    var $this = $(this);            
+                    $this.removeClass('active').addClass('hit');
+
+                   if( $this.attr('class').indexOf("hit")>0)
+                   {
+                       
+                       score+=10;
+                   }
+                    updateScore();
+                    var audio = document.createElement("audio");
+                    audio.src = "./music/yisell_sound_2014081223563675612_66366 (1).mp3";
+                    audio.play();
+                });
+
+                $("#sizing").change(function () {
+                    // 變更尺寸事件
+
+                    createPlayground(this.value);
+                    
+                });
+
+                $("#start").click(function () {
+                    // 開始遊戲事件
+                   startGame();
+
+                });
+
+                $("#stop").click(function () {
+                    // 終止遊戲事件
+                    stopGame();
+                    score = 0;
+                    life = 100;
+
+                  
+                });
+
+
+
+                function createPlayground(edge) {
+                    // 建立空間
+                    
+                    $playground.empty();
+                    var $table = $('<table></table>').appendTo($playground);
+                    for(var i = 0;i<edge;i++){
+                        var $tr = $('<tr></tr>').appendTo($table);
+                        for(var j = 0; j<edge ;j++){
+                            var $td = $('<td></td>').appendTo($tr);
+                            var $div = $('<div></div>').addClass("mole").appendTo($td);
+                        }                    
+                    }
+                    $table
+                        .appendTo($playground)
+                        .css({
+                            marginTop: -1.05* ($table.outerHeight() / 2),
+                            marginLeft: -1.5 * ($table.outerWidth() / 2)
+                        });
+
+                    var audio = document.createElement("audio");
+                    audio.src = "./music/Manic_Polka.mp3";
+                    audio.play();
+                }
+
+                function startGame() {
+                    // 開始遊戲
+                    
+                    nextMole();
+
+                }
+
+                function stopGame() {
+                    // 終止遊戲
+                    
+                clearTimeout(timer);
+                $(".mole.active").removeClass("active");
+                $(".mole.hit").removeClass("hit");
+                                
+                }
+
+                function getLevelProfile() {
+                    // 取得目前等級參數
+                    var levelProfile = levelProfiles[0];
+
+                    for (var i = 0; i < levelProfiles.length; i++) {
+                        if (score >= levelProfiles[i].score) {
+                            levelProfile = levelProfiles[i];
+                        }
+                        else {
+                            break;
+                        }
+                    }
+                    return levelProfile;
+
+                }
+
+                function updateScore() {
+                    var $currentscore = $('#current-score');
+                     $('#current-score').html(score);
+                    // 更新成績
+                }
+
+                function updateLife() {
+                    // 更新生命值
+                    $('#progress')
+                            .attr('aria-valuenow',life) //屬性：life
+                            .css('width',life+'%') //life狀態+%
+                            .text(life); //文字改為life現在的狀態
+
+
+                    
+                }
+
+                function nextMole() {
+                    // 🐭 下一隻地鼠
+                                    
+                    var $moles = $('.mole');
+                    var levelProfile = getLevelProfile();
+                  
+                    var $active = $('.mole.active').length;
+                    var $hit = $('.mole.hit').length; 
+                    life -= Math.max(0, $active - $hit);
+                    updateLife();
+
+                    if (life <= 0) {
+                        stopGame();
+                        alert("GAME OVER!");
+                        return;
+                    }
+                    $moles.removeClass("active").removeClass('hit');
+                    $("#current-level").text(levelProfile.level);
+
+                   for (var i = 0; i < levelProfile.moles; i++) {
+                        var a = Math.floor(Math.random() * $moles.length);
+                        $moles.eq(a).addClass("active");
+                    }
+
+
+                    timer = setTimeout(nextMole, levelProfile.interval);
+
+
+                   
+                    
+                }
+                
+                createPlayground(3);
+            });
+        </script>
+    </body>
+</html>
